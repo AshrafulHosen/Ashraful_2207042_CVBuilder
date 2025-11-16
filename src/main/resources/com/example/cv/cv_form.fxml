@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example.cv.CVFormController">
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/25"
+            fx:controller="com.example.cv.CVFormController">
 
     <VBox spacing="15" style="-fx-padding: 20;">
 
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Create Your CV" />
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Create Your CV" />
 
         <!-- Personal Information -->
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Personal Information" />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Personal Information" />
 
-        <TextField fx:id="fullNameField" promptText="Full Name" />
+        <TextField fx:id="fullNameField" promptText="Full Name *" />
         <TextField fx:id="emailField" promptText="Email Address" />
         <TextField fx:id="phoneField" promptText="Phone Number" />
         <TextField fx:id="addressField" promptText="Address" />
 
         <!-- Education -->
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Educational Qualifications" />
-        <TextArea fx:id="educationArea" prefRowCount="4" promptText="Enter your educational qualifications..." />
-      <Label text="Skills">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-        <TextArea fx:id="skillsArea" prefRowCount="4" promptText="Enter your skills..." />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Educational Qualifications" />
+        <TextArea fx:id="educationArea" prefRowCount="4"
+                  promptText="Enter your educational qualifications..."
+                  wrapText="true" />
+
+        <!-- Skills -->
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Skills" />
+        <TextArea fx:id="skillsArea" prefRowCount="4"
+                  promptText="Enter your skills..."
+                  wrapText="true" />
 
         <!-- Work Experience -->
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Work Experience" />
-        <TextArea fx:id="experienceArea" prefRowCount="4" promptText="Enter your work experience..." />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Work Experience" />
+        <TextArea fx:id="experienceArea" prefRowCount="4"
+                  promptText="Enter your work experience..."
+                  wrapText="true" />
 
         <!-- Projects -->
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Projects" />
-        <TextArea fx:id="projectsArea" prefRowCount="4" promptText="Enter your projects..." />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Projects" />
+        <TextArea fx:id="projectsArea" prefRowCount="4"
+                  promptText="Enter your projects..."
+                  wrapText="true" />
 
-        <!-- Save button or Next button (optional) -->
-        <Button style="-fx-font-size: 16px; -fx-padding: 10 20;" text="Generate CV" />
+        <!-- Action Buttons -->
+        <HBox spacing="15" style="-fx-alignment: center; -fx-padding: 10 0 0 0;">
+            <Button text="Back to Home" onAction="#handleBackToHome"
+                    style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white;" />
+            <Button text="Generate CV" onAction="#handleGenerateCV"
+                    style="-fx-font-size: 16px; -fx-padding: 10 20; -fx-background-color: #27ae60; -fx-text-fill: white;" />
+        </HBox>
 
     </VBox>
 

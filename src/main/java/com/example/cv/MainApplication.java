@@ -12,7 +12,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("CV Builder - Home");
+        primaryStage.setTitle("Home");
         primaryStage.setScene(scene);
         primaryStage.setWidth(900);
         primaryStage.setHeight(600);

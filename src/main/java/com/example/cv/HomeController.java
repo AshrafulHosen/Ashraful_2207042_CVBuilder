@@ -18,7 +18,7 @@ public class HomeController {
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
-            stage.setTitle("CV Builder - Form");
+            stage.setTitle("Create");
             stage.show();
 
         } catch (Exception e) {
