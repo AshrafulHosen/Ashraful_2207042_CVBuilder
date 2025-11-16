@@ -20,31 +20,26 @@
             </HBox>
         </VBox>
 
-        <!-- Education Section -->
         <VBox spacing="8">
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc;" text="EDUCATION" />
             <TextArea fx:id="educationPreview" editable="false" prefRowCount="3" style="-fx-background-color: transparent; -fx-border-color: #009bcc; -fx-border-radius: 5; -fx-padding: 10;" wrapText="true" />
         </VBox>
 
-        <!-- Skills Section -->
         <VBox spacing="8">
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc;" text="SKILLS" />
             <TextArea fx:id="skillsPreview" editable="false" prefRowCount="3" style="-fx-background-color: transparent; -fx-border-color: #009bcc; -fx-border-radius: 5; -fx-padding: 10;" wrapText="true" />
         </VBox>
 
-        <!-- Experience Section -->
         <VBox spacing="8">
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc;" text="WORK EXPERIENCE" />
             <TextArea fx:id="experiencePreview" editable="false" prefRowCount="4" style="-fx-background-color: transparent; -fx-border-color: #009bcc; -fx-border-radius: 5; -fx-padding: 10;" wrapText="true" />
         </VBox>
 
-        <!-- Projects Section -->
         <VBox spacing="8">
             <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc;" text="PROJECTS" />
             <TextArea fx:id="projectsPreview" editable="false" prefRowCount="4" style="-fx-background-color: transparent; -fx-border-color: #009bcc; -fx-border-radius: 5; -fx-padding: 10;" wrapText="true" />
         </VBox>
 
-        <!-- Action Buttons -->
         <HBox spacing="15" style="-fx-alignment: center; -fx-padding: 20 0 0 0;">
             <Button onAction="#handleBackToForm" style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white;" text="Back to Form" />
             <Button onAction="#handleBackToHome" style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #27ae60; -fx-text-fill: white;" text="Back to Home" />

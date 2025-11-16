@@ -12,7 +12,6 @@
 
         <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Create Your CV" />
 
-        <!-- Personal Information -->
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Personal Information" />
 
         <TextField fx:id="fullNameField" promptText="Full Name *" />
@@ -20,31 +19,26 @@
         <TextField fx:id="phoneField" promptText="Phone Number" />
         <TextField fx:id="addressField" promptText="Address" />
 
-        <!-- Education -->
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #009bcc" text="Educational Qualifications" />
         <TextArea fx:id="educationArea" prefRowCount="4"
                   promptText="Enter your educational qualifications..."
                   wrapText="true" />
 
-        <!-- Skills -->
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Skills" />
         <TextArea fx:id="skillsArea" prefRowCount="4"
                   promptText="Enter your skills..."
                   wrapText="true" />
 
-        <!-- Work Experience -->
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Work Experience" />
         <TextArea fx:id="experienceArea" prefRowCount="4"
                   promptText="Enter your work experience..."
                   wrapText="true" />
 
-        <!-- Projects -->
         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #009bcc" text="Projects" />
         <TextArea fx:id="projectsArea" prefRowCount="4"
                   promptText="Enter your projects..."
                   wrapText="true" />
 
-        <!-- Action Buttons -->
         <HBox spacing="15" style="-fx-alignment: center; -fx-padding: 10 0 0 0;">
             <Button text="Back to Home" onAction="#handleBackToHome"
                     style="-fx-font-size: 14px; -fx-padding: 8 15; -fx-background-color: #95a5a6; -fx-text-fill: white;" />

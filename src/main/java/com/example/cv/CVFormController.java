@@ -21,11 +21,6 @@ public class CVFormController {
     @FXML private TextArea projectsArea;
 
     @FXML
-    public void initialize() {
-        // Initialization code if needed
-    }
-
-    @FXML
     public void handleGenerateCV() {
         try {
             // Validate required fields
@@ -34,11 +29,9 @@ public class CVFormController {
                 return;
             }
 
-            // Load the preview screen
             FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
             Parent root = loader.load();
 
-            // Get the controller and pass data
             CVPreviewController previewController = loader.getController();
             previewController.setCVData(
                     fullNameField.getText().trim(),
@@ -51,7 +44,6 @@ public class CVFormController {
                     projectsArea.getText().trim()
             );
 
-            // Switch to preview scene
             Stage stage = (Stage) fullNameField.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
