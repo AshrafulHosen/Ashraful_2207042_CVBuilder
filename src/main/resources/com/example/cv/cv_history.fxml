@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.cv.CVHistoryController"
+      spacing="15" style="-fx-padding: 20; -fx-background-color: white;">
+
+    <Label text="Saved CVs" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #009bcc;"/>
+
+    <TableView fx:id="cvTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Full Name" prefWidth="200"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Back to Home" onAction="#handleBack" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+        <Button text="Delete Selected" onAction="#handleDelete" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        <Button text="Edit Selected" onAction="#handleEdit" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

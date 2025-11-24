@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert; // Import added
 
 public class CVFormController {
 
@@ -15,76 +15,84 @@ public class CVFormController {
     @FXML private TextField emailField;
     @FXML private TextField phoneField;
     @FXML private TextField addressField;
-
     @FXML private TextArea educationArea;
     @FXML private TextArea skillsArea;
     @FXML private TextArea experienceArea;
     @FXML private TextArea projectsArea;
 
-    // Instantiate the handler
     private final DatabaseHandler dbHandler = new DatabaseHandler();
+    private int currentCvId = -1; // -1 means Create Mode, anything else means Update Mode
+
+    public void setEditMode(CV cv) {
+        this.currentCvId = cv.getId();
+        fullNameField.setText(cv.getFullName());
+        emailField.setText(cv.getEmail());
+        phoneField.setText(cv.getPhone());
+        addressField.setText(cv.getAddress());
+        educationArea.setText(cv.getEducation());
+        skillsArea.setText(cv.getSkills());
+        experienceArea.setText(cv.getExperience());
+        projectsArea.setText(cv.getProjects());
+    }
 
     @FXML
     public void handleGenerateCV() {
         try {
-            // 1. Validate required fields
             if (fullNameField.getText().trim().isEmpty()) {
                 showError("Full Name is required");
                 return;
             }
 
-            // 2. Save to Database
-            boolean isSaved = dbHandler.saveCV(
-                    fullNameField.getText().trim(),
-                    emailField.getText().trim(),
-                    phoneField.getText().trim(),
-                    addressField.getText().trim(),
-                    educationArea.getText().trim(),
-                    skillsArea.getText().trim(),
-                    experienceArea.getText().trim(),
-                    projectsArea.getText().trim()
-            );
+            boolean success;
 
-            if (!isSaved) {
-                showError("Failed to save CV to database. Proceeding with preview only.");
+            if (currentCvId == -1) {
+                // Create New
+                success = dbHandler.saveCV(
+                        fullNameField.getText(), emailField.getText(), phoneField.getText(), addressField.getText(),
+                        educationArea.getText(), skillsArea.getText(), experienceArea.getText(), projectsArea.getText()
+                );
             } else {
-                System.out.println("CV Saved successfully!");
+                // Update Existing
+                success = dbHandler.updateCV(
+                        currentCvId,
+                        fullNameField.getText(), emailField.getText(), phoneField.getText(), addressField.getText(),
+                        educationArea.getText(), skillsArea.getText(), experienceArea.getText(), projectsArea.getText()
+                );
             }
 
-            // 3. Proceed to Preview (Existing code)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
-            Parent root = loader.load();
-
-            CVPreviewController previewController = loader.getController();
-            previewController.setCVData(
-                    fullNameField.getText().trim(),
-                    emailField.getText().trim(),
-                    phoneField.getText().trim(),
-                    addressField.getText().trim(),
-                    educationArea.getText().trim(),
-                    skillsArea.getText().trim(),
-                    experienceArea.getText().trim(),
-                    projectsArea.getText().trim()
-            );
-
-            Stage stage = (Stage) fullNameField.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Preview");
-            stage.show();
+            if (success) {
+                // Go to Preview
+                loadPreview();
+            } else {
+                showError("Database Error.");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            showError("Error generating CV preview");
+            showError("Error processing CV.");
         }
+    }
+
+    private void loadPreview() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
+        Parent root = loader.load();
+
+        CVPreviewController previewController = loader.getController();
+        previewController.setCVData(
+                fullNameField.getText(), emailField.getText(), phoneField.getText(), addressField.getText(),
+                educationArea.getText(), skillsArea.getText(), experienceArea.getText(), projectsArea.getText()
+        );
+
+        Stage stage = (Stage) fullNameField.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Preview");
+        stage.show();
     }
 
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
+        alert.show();
     }
 
     @FXML
@@ -92,14 +100,10 @@ public class CVFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) fullNameField.getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.setTitle("Home");
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

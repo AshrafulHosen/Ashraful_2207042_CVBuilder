@@ -25,5 +25,18 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void handleViewHistory(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_history.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Saved CVs");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
