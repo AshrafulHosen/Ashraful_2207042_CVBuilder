@@ -1,17 +1,13 @@
 module com.example.cv {
+    // JavaFX modules needed for your UI
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
-    requires java.desktop;
+    // Database modules needed for SQLite
+    requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
+    // Permissions to open your code to JavaFX
     opens com.example.cv to javafx.fxml;
     exports com.example.cv;
 }

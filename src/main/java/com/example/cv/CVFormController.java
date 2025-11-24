@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert; // Import added
 
 public class CVFormController {
 
@@ -20,15 +21,37 @@ public class CVFormController {
     @FXML private TextArea experienceArea;
     @FXML private TextArea projectsArea;
 
+    // Instantiate the handler
+    private final DatabaseHandler dbHandler = new DatabaseHandler();
+
     @FXML
     public void handleGenerateCV() {
         try {
-            // Validate required fields
+            // 1. Validate required fields
             if (fullNameField.getText().trim().isEmpty()) {
                 showError("Full Name is required");
                 return;
             }
 
+            // 2. Save to Database
+            boolean isSaved = dbHandler.saveCV(
+                    fullNameField.getText().trim(),
+                    emailField.getText().trim(),
+                    phoneField.getText().trim(),
+                    addressField.getText().trim(),
+                    educationArea.getText().trim(),
+                    skillsArea.getText().trim(),
+                    experienceArea.getText().trim(),
+                    projectsArea.getText().trim()
+            );
+
+            if (!isSaved) {
+                showError("Failed to save CV to database. Proceeding with preview only.");
+            } else {
+                System.out.println("CV Saved successfully!");
+            }
+
+            // 3. Proceed to Preview (Existing code)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("cv_preview.fxml"));
             Parent root = loader.load();
 
@@ -57,8 +80,7 @@ public class CVFormController {
     }
 
     private void showError(String message) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
-                javafx.scene.control.Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);

@@ -10,6 +10,9 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        dbHandler.initializeDatabase();
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Home");
